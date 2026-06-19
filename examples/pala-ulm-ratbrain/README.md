@@ -1,3 +1,23 @@
+---
+pretty_name: "OpenH-RF — PALA In Vivo Rat Brain ULM"
+license: cc-by-4.0
+task_categories:
+  - image-feature-extraction
+  - other
+tags:
+  - ultrasound
+  - rf
+  - iq
+  - openh-rf
+  - ultrasound-localization-microscopy
+  - in-vivo
+  - rat-brain
+language:
+  - en
+size_categories:
+  - n<1K
+---
+
 # PALA — In Vivo Rat Brain ULM
 
 ## Dataset Description
@@ -10,7 +30,7 @@ Chavignon Arthur, Baptiste Heiles, Hingot Vincent, Lopez Pauline, Teston Eliott,
 
 ## Dataset Creation Date
 
-Source data deposited on [Zenodo (2023)](https://doi.org/10.5281/zenodo.7883226); converted to zea format 2026/06/13.
+Source data deposited on [Zenodo (2023)](https://doi.org/10.5281/zenodo.7883226); converted to zea format 06/13/2026.
 
 ## License / Terms of Use
 
@@ -58,4 +78,5 @@ A `zea.Pipeline` (DAS → tissue suppression → envelope detection → normaliz
 
 ## Ethical Considerations
 
-Animal experiments described in the source publication (Heiles et al., 2022) were carried out under the relevant institutional and national ethical approvals for animal research. Animal preparation and contrast-agent perfusion performed at the CYCERON biomedical imaging platform (Caen, France). No human subjects; no PHI.
+Animal experiments are described in the source publication (Heiles et al., 2022) and were carried out under the relevant institutional and national ethical approvals for animal research. Animal preparation and contrast-agent perfusion performed at the CYCERON biomedical imaging platform (Caen, France). No human subjects; no PHI.
+
