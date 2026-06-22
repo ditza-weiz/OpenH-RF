@@ -12,3 +12,5 @@ __pycache__/
 # Generated example artifacts (written by the example scripts at run time)
 examples/tracked-cirs-phantom/data/
 examples/tracked-cirs-phantom/3d_views/
+
+.idea/
