@@ -19,6 +19,9 @@ Usage:
     python examples/saving/verasonics/convert.py
     python examples/saving/verasonics/convert.py --output my_file.hdf5
 """
+import os
+os.environ.setdefault("KERAS_BACKEND", "torch")
+
 
 import argparse
 from pathlib import Path
@@ -27,9 +30,16 @@ from huggingface_hub import hf_hub_download
 from zea import File, log
 from zea.data.convert.verasonics import VerasonicsFile
 
-HF_REPO = "zeahub/phantoms"
-HF_FILENAME = "2025_05_19_cirs_planewave.mat"
+#  From original example in openH-RF
+# HF_REPO = "zeahub/phantoms"
+# HF_FILENAME = "2025_05_19_cirs_planewave.mat"
 DEFAULT_OUTPUT = Path(__file__).parent / "verasonics_sample.hdf5"
+
+
+DATA_FOLDER = "/home/projects/yonina/ditza/data_for_openH-RF/P4_2v_raylns_all_Tx_Ch"
+VERASONICS_FILENAME = "P4_2v_raylns_all_Tx_Ch_workspace_v73.mat"
+
+
 
 
 def main():
@@ -38,10 +48,25 @@ def main():
     args = parser.parse_args()
 
     # Download the .mat file from Hugging Face (cached after first run)
-    log.info(f"Downloading {HF_FILENAME} from {HF_REPO}...")
-    mat_path = hf_hub_download(
-        repo_id=HF_REPO, filename=HF_FILENAME, repo_type="dataset", revision="v0.1.0"
-    )
+    # log.info(f"Downloading {HF_FILENAME} from {DATA_FOLDER}...")
+    # mat_path = hf_hub_download(
+    #     repo_id=HF_REPO, filename=HF_FILENAME, repo_type="dataset", revision="v0.1.0"
+    # )
+
+    # Download the .mat file from folder
+    log.info(f"Downloading {VERASONICS_FILENAME} from {DATA_FOLDER}...")
+    mat_path = os.path.join(DATA_FOLDER, VERASONICS_FILENAME)
+    print(os.path.exists(mat_path))  # should now print True
+
+
+    p = "/home/projects/yonina/ditza/data_for_openH-RF/P4_2v_raylns_all_Tx_Ch/P4_2v_raylns_all_Tx_Ch_workspace_v73.mat"
+
+    print("exists:", os.path.exists(p), "size:", os.path.getsize(p))  # size should be 97916358
+    import h5py
+    with h5py.File(p, "r") as f:  # raw h5py — shows the TRUE error
+        print("keys:", list(f.keys())[:5])
+
+
 
     # Create a verasonics .mat file by saving your verasonics workspace in matlab.
     with VerasonicsFile(mat_path, "r") as vf:
